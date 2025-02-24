@@ -63,7 +63,7 @@
                                     <p class="text-sm text-gray-500">Including all taxes and fees</p>
                                 </div>
                                 <p class="text-2xl font-bold text-gray-900">
-                                    ${{ number_format($cartItems->sum('total_price'), 2) }}
+                                    ksh {{ number_format($cartItems->sum('total_price'), 2) }}
                                 </p>
                             </div>
 

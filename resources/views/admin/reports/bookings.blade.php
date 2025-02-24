@@ -52,7 +52,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
                         <h3 class="text-lg font-medium text-gray-900">Total Revenue</h3>
-                        <p class="text-3xl font-bold text-green-600">${{ number_format($totalRevenue, 2) }}</p>
+                        <p class="text-3xl font-bold text-green-600">Ksh {{ number_format($totalRevenue, 2) }}</p>
                     </div>
                 </div>
 
@@ -122,7 +122,7 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        ${{ number_format($booking->total_price, 2) }}
+                                        Ksh {{ number_format($booking->total_price, 2) }}
                                     </td>
                                 </tr>
                             @empty

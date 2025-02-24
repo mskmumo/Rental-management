@@ -45,7 +45,7 @@
                             </div>
                             <div class="ml-4">
                                 <h2 class="text-sm font-medium text-gray-600">Total Revenue</h2>
-                                <p class="text-2xl font-semibold text-gray-900">Ksh{{ number_format($totalRevenue ?? 0, 2) }}</p>
+                                <p class="text-2xl font-semibold text-gray-900">Ksh {{ number_format($totalRevenue ?? 0, 2) }}</p>
                             </div>
                         </div>
                     </div>

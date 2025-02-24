@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="flex justify-between text-lg font-bold text-gray-900 mt-4">
                                     <p>Total</p>
-                                    <p>${{ number_format($cartItems->sum('total_price'), 2) }}</p>
+                                    <p>ksh {{ number_format($cartItems->sum('total_price'), 2) }}</p>
                                 </div>
                             </div>
                         </div>

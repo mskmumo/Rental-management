@@ -14,7 +14,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <p class="text-sm text-gray-600">Total Revenue (This Year)</p>
-                            <p class="text-3xl font-bold text-green-600">${{ number_format($yearlyRevenue, 2) }}</p>
+                            <p class="text-3xl font-bold text-green-600">Ksh {{ number_format($yearlyRevenue, 2) }}</p>
                         </div>
                         <div>
                             <p class="text-sm text-gray-600">Average Monthly Revenue</p>

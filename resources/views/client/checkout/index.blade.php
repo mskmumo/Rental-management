@@ -28,14 +28,14 @@
                                                 Check-out: {{ $cartItems[$room->id]['check_out_date'] }}
                                             </p>
                                             <p class="text-sm font-semibold mt-1">
-                                                ${{ $room->price_per_night }}/night
+                                                Ksh {{ $room->price_per_night }}/night
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                             <div class="text-xl font-bold mt-4">
-                                Total: ${{ number_format($total, 2) }}
+                                Total: Ksh {{ number_format($total, 2) }}
                             </div>
                         </div>
 

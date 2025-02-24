@@ -105,7 +105,7 @@
 
                         <div class="p-4 bg-green-50 rounded-lg">
                             <p class="text-sm text-green-600 font-medium">Total Revenue</p>
-                            <p class="text-2xl font-bold text-green-900">${{ number_format($totalRevenue ?? 0, 2) }}</p>
+                            <p class="text-2xl font-bold text-green-900">Ksh {{ number_format($totalRevenue ?? 0, 2) }}</p>
                         </div>
 
                         <div class="p-4 bg-blue-50 rounded-lg">

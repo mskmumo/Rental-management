@@ -45,7 +45,7 @@
                             </div>
                             <div class="ml-4">
                                 <h2 class="text-sm font-medium text-gray-600">Total Spent</h2>
-                                <p class="text-2xl font-semibold text-gray-900">${{ $totalSpent ?? '0.00' }}</p>
+                                <p class="text-2xl font-semibold text-gray-900">ksh {{ $totalSpent ?? '0.00' }}</p>
                             </div>
                         </div>
                     </div>

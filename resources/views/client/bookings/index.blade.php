@@ -30,7 +30,7 @@
                                                     Check-out: {{ $booking->check_out_date->format('Y-m-d') }}
                                                 </p>
                                                 <p class="text-sm font-medium">
-                                                    Total: ${{ number_format($booking->total_price, 2) }}
+                                                    Total: ksh {{ number_format($booking->total_price, 2) }}
                                                 </p>
                                                 <p class="text-sm">
                                                     Status: 

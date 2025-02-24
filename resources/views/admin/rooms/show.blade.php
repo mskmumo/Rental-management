@@ -30,7 +30,7 @@
                             <div class="grid grid-cols-2 gap-4 mb-6">
                                 <div>
                                     <span class="font-semibold">Price per Night:</span>
-                                    <p class="text-indigo-600 text-xl">${{ number_format($room->price_per_night, 2) }}</p>
+                                    <p class="text-indigo-600 text-xl">ksh {{ number_format($room->price_per_night, 2) }}</p>
                                 </div>
                                 <div>
                                     <span class="font-semibold">Capacity:</span>

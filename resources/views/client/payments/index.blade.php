@@ -17,7 +17,7 @@
                             </div>
                             <div class="ml-4">
                                 <h3 class="text-sm font-medium text-gray-600">Total Payments</h3>
-                                <p class="text-2xl font-semibold text-gray-900">${{ number_format($totalAmount ?? 0, 2) }}</p>
+                                <p class="text-2xl font-semibold text-gray-900">Ksh {{ number_format($totalAmount ?? 0, 2) }}</p>
                             </div>
                         </div>
                     </div>

@@ -18,7 +18,7 @@
                             <div>
                                 <h4 class="text-base font-medium">{{ $room->name }}</h4>
                                 <p class="text-sm text-gray-500">{{ $room->description }}</p>
-                                <p class="text-indigo-600 font-medium">${{ number_format($room->price_per_night, 2) }} / night</p>
+                                <p class="text-indigo-600 font-medium">ksh {{ number_format($room->price_per_night, 2) }} / night</p>
                             </div>
                         </div>
                     </div>

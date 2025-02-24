@@ -37,7 +37,7 @@
                                         <img src="{{ Storage::url($room->image_path) }}" alt="{{ $room->name }}" class="w-20 h-20 object-cover">
                                     </td>
                                     <td class="px-6 py-4 border-b">{{ $room->name }}</td>
-                                    <td class="px-6 py-4 border-b">${{ $room->price_per_night }}</td>
+                                    <td class="px-6 py-4 border-b">ksh {{ $room->price_per_night }}</td>
                                     <td class="px-6 py-4 border-b">{{ $room->status }}</td>
                                     <td class="px-6 py-4 border-b">
                                         <a href="{{ route('admin.rooms.edit', $room) }}" class="text-blue-600 hover:text-blue-900">Edit</a>
