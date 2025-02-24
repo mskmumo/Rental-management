@@ -23,6 +23,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\WelcomeSettingsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\PaymentController as AdminPaymentController;
+use App\Http\Controllers\Admin\ContactMessageController;
 
 // Public routes
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -37,7 +38,7 @@ Route::prefix('rooms')->name('rooms.')->group(function () {
 
 // Contact routes
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Newsletter route
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
@@ -54,10 +55,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Dashboard Redirection
     Route::get('/dashboard', function () {
-        if (auth()->user()->isAdmin()) {
-            return redirect()->route('admin.dashboard');
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
-        return redirect()->route('client.dashboard');
+        return Auth::user()->isAdmin() 
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('client.dashboard');
     })->name('dashboard');
 });
 
@@ -120,6 +123,12 @@ Route::middleware(['auth', 'adminMiddleware'])->prefix('admin')->name('admin.')-
     // Settings
     Route::get('/welcome-settings', [WelcomeSettingsController::class, 'index'])->name('welcome-settings.index');
     Route::put('/welcome-settings', [WelcomeSettingsController::class, 'update'])->name('welcome-settings.update');
+
+    // Contact Messages
+    Route::get('/contact-messages', [ContactMessageController::class, 'index'])->name('contact-messages.index');
+    Route::get('/contact-messages/{message}', [ContactMessageController::class, 'show'])->name('contact-messages.show');
+    Route::post('/contact-messages/{message}/reply', [ContactMessageController::class, 'reply'])->name('contact-messages.reply');
+    Route::delete('/contact-messages/{message}', [ContactMessageController::class, 'destroy'])->name('contact-messages.destroy');
 });
 
 // Static pages
@@ -135,6 +144,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 // Add these routes after your existing routes
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submit');
+Route::post('/contact', [PageController::class, 'submitContact'])->name('contact.submitContact');
+// Route::post('/contact', [PageController::class, 'store'])->name('contact.store');
 Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/terms-of-service', [PageController::class, 'terms'])->name('terms');

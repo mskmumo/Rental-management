@@ -38,7 +38,10 @@ class RoomController extends Controller
             'bed_type_id' => 'required|exists:bed_types,id',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'amenities' => 'array',
-            'amenities.*' => 'exists:amenities,id'
+            'amenities.*' => 'exists:amenities,id',
+            'address' => 'required|string|max:255',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180'
         ]);
 
         if ($request->hasFile('image')) {
@@ -62,7 +65,9 @@ class RoomController extends Controller
 
     public function edit(Room $room)
     {
-        return view('admin.rooms.edit', compact('room'));
+        $amenities = \App\Models\Amenity::all();
+        $bedTypes = \App\Models\BedType::all();
+        return view('admin.rooms.edit', compact('room', 'amenities', 'bedTypes'));
     }
 
     public function update(Request $request, Room $room)
@@ -72,7 +77,13 @@ class RoomController extends Controller
             'description' => 'required|string',
             'price_per_night' => 'required|numeric|min:0',
             'capacity' => 'required|integer|min:1',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+            'bed_type_id' => 'required|exists:bed_types,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'amenities' => 'array',
+            'amenities.*' => 'exists:amenities,id',
+            'address' => 'required|string|max:255',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180'
         ]);
 
         if ($request->hasFile('image')) {
@@ -85,6 +96,11 @@ class RoomController extends Controller
         }
 
         $room->update($validated);
+
+        // Sync amenities
+        if ($request->has('amenities')) {
+            $room->amenities()->sync($request->amenities);
+        }
 
         return redirect()->route('admin.rooms.index')
             ->with('success', 'Room updated successfully.');

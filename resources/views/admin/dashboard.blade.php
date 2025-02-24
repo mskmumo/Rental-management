@@ -139,7 +139,7 @@
 
                     <!-- Analytics Chart -->
                     <div class="mt-6 bg-white overflow-hidden shadow-sm rounded-xl">
-                        <div class="p-6">
+                    <div class="p-6">
                             <div class="flex justify-between items-center mb-6">
                                 <h2 class="text-xl font-semibold text-gray-900">Booking Analytics</h2>
                                 <div class="flex items-center gap-4">
@@ -167,9 +167,9 @@
                 <div class="space-y-6">
                     <!-- Quick Actions -->
                     <div class="bg-white overflow-hidden shadow-sm rounded-xl">
-                        <div class="p-6">
+                    <div class="p-6">
                             <h2 class="text-xl font-semibold text-gray-900 mb-6">Quick Actions</h2>
-                            <div class="space-y-4">
+                        <div class="space-y-4">
                                 <a href="{{ route('admin.rooms.create') }}" 
                                     class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                                     <div class="bg-indigo-100 rounded-lg p-3">
@@ -210,7 +210,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                                        </div>
 
                     <!-- Recent Activity -->
                     <div class="bg-white overflow-hidden shadow-sm rounded-xl">
@@ -225,7 +225,7 @@
                                                 {{ substr($activity->user->name ?? 'U', 0, 1) }}
                                             </span>
                                         </span>
-                                    </div>
+                                        </div>
                                     <div class="min-w-0 flex-1">
                                         <p class="text-sm text-gray-900">
                                             {{ $activity->description }}

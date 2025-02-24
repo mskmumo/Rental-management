@@ -27,8 +27,10 @@ class DatabaseSeeder extends Seeder
         // Run seeders in correct order
         $this->call([
             RoomTypesSeeder::class,    // Seeds apartment_types and bed_types
+            AmenitySeeder::class,       // Seeds amenities
+            RoomSeeder::class,          // Seeds rooms with amenities
             SettingsSeeder::class,      // Seeds site settings
-            GallerySeeder::class,
+            GallerySeeder::class,       // Seeds gallery images
         ]);
     }
 }

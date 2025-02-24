@@ -2,31 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
-use App\Models\Setting;
-use App\Notifications\NewContactMessage;
+use App\Models\ContactMessage;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewContactMessage;
 use App\Models\User;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        // Get settings from database or use defaults
-        $address = Setting::where('key', 'site.address')->first()?->value ?? '123 Main Street, City, Country';
-        $phone = Setting::where('key', 'site.phone')->first()?->value ?? '+1 234 567 890';
-        $email = Setting::where('key', 'site.email')->first()?->value ?? 'contact@example.com';
-
-        return view('pages.contact', [
-            'siteSettings' => [
-                'address' => $address,
-                'phone' => $phone,
-                'email' => $email,
-            ]
-        ]);
+        $siteSettings = SiteSetting::pluck('value', 'key')->toArray();
+        return view('pages.contact', compact('siteSettings'));
     }
 
-    public function submit(Request $request)
+    public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -35,14 +26,18 @@ class ContactController extends Controller
             'message' => 'required|string'
         ]);
 
-        $contact = Contact::create($validated);
+        try {
+            $contactMessage = ContactMessage::create($validated);
 
-        // Notify all admin users
-        User::where('usertype', 'admin')->get()
-            ->each(function($admin) use ($contact) {
-                $admin->notify(new NewContactMessage($contact));
-            });
+            // Notify admin users
+            $admins = User::where('usertype', 'admin')->get();
+            Notification::send($admins, new NewContactMessage($contactMessage));
 
-        return back()->with('success', 'Your message has been sent successfully!');
+            return redirect()->back()->with('success', 'Your message has been sent successfully. We will get back to you soon.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'Sorry, there was an error sending your message. Please try again later.')
+                ->withInput();
+        }
     }
 } 

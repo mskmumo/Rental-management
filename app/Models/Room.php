@@ -19,12 +19,18 @@ class Room extends Model
         'capacity',
         'status', // available, booked, maintenance
         'featured_image',
-        'is_featured'
+        'is_featured',
+        'image_path',
+        'latitude',
+        'longitude',
+        'address'
     ];
 
     protected $casts = [
         'is_featured' => 'boolean',
-        'price_per_night' => 'decimal:2'
+        'price_per_night' => 'decimal:2',
+        'latitude' => 'decimal:8',
+        'longitude' => 'decimal:8'
     ];
 
     public function apartmentType()

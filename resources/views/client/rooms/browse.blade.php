@@ -84,7 +84,7 @@
                                     <p class="text-sm text-gray-600">{{ $room->apartmentType->name }}</p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-lg font-bold text-indigo-600">${{ number_format($room->price_per_night, 2) }}</p>
+                                    <p class="text-lg font-bold text-indigo-600">Ksh {{ number_format($room->price_per_night, 2) }}</p>
                                     <p class="text-sm text-gray-600">per night</p>
                                 </div>
                             </div>

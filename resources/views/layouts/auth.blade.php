@@ -12,6 +12,24 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+        <!-- Custom Styles -->
+        <style>
+            @keyframes spin-slow {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            .animate-spin-slow {
+                animation: spin-slow 20s linear infinite;
+            }
+            .logo-hover-pause:hover {
+                animation-play-state: paused;
+            }
+        </style>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -24,7 +42,9 @@
                         <!-- Logo and Name -->
                         <div class="flex items-center space-x-3">
                             <div class="flex-shrink-0">
-                                <img class="h-12 w-auto" src="{{ asset('images/logo.png') }}" alt="Pahali Pazuri Logo">
+                                <img class="h-12 w-12 rounded-full shadow-lg animate-spin-slow logo-hover-pause" 
+                                    src="{{ asset('images/pahali-pazuri.png') }}" 
+                                    alt="Pahali Pazuri Logo">
                             </div>
                             <div>
                                 <h1 class="text-2xl font-bold text-gray-900">Pahali Pazuri</h1>

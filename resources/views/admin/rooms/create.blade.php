@@ -5,6 +5,52 @@
         </h2>
     </x-slot>
 
+    @push('scripts')
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_api_key') }}&libraries=places"></script>
+    <script>
+        function initMap() {
+            const defaultLocation = { lat: -1.2921, lng: 36.8219 }; // Default to Nairobi
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultLocation,
+                zoom: 13
+            });
+
+            const marker = new google.maps.Marker({
+                map: map,
+                draggable: true,
+                position: defaultLocation
+            });
+
+            const input = document.getElementById('address');
+            const searchBox = new google.maps.places.SearchBox(input);
+
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            searchBox.addListener('places_changed', function() {
+                const places = searchBox.getPlaces();
+                if (places.length === 0) return;
+
+                const place = places[0];
+                if (!place.geometry) return;
+
+                map.setCenter(place.geometry.location);
+                marker.setPosition(place.geometry.location);
+
+                document.getElementById('latitude').value = place.geometry.location.lat();
+                document.getElementById('longitude').value = place.geometry.location.lng();
+            });
+
+            marker.addListener('dragend', function() {
+                const position = marker.getPosition();
+                document.getElementById('latitude').value = position.lat();
+                document.getElementById('longitude').value = position.lng();
+            });
+        }
+    </script>
+    @endpush
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -22,6 +68,30 @@
                                 <x-input-label for="description" :value="__('Description')" />
                                 <textarea id="description" name="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" rows="4" required>{{ old('description') }}</textarea>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+
+                            <div>
+                                <x-input-label for="address" :value="__('Address')" />
+                                <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address')" required />
+                                <x-input-error :messages="$errors->get('address')" class="mt-2" />
+                            </div>
+
+                            <div class="h-96">
+                                <div id="map" class="w-full h-full rounded-lg"></div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <x-input-label for="latitude" :value="__('Latitude')" />
+                                    <x-text-input id="latitude" name="latitude" type="text" class="mt-1 block w-full" :value="old('latitude')" readonly />
+                                    <x-input-error :messages="$errors->get('latitude')" class="mt-2" />
+                                </div>
+
+                                <div>
+                                    <x-input-label for="longitude" :value="__('Longitude')" />
+                                    <x-text-input id="longitude" name="longitude" type="text" class="mt-1 block w-full" :value="old('longitude')" readonly />
+                                    <x-input-error :messages="$errors->get('longitude')" class="mt-2" />
+                                </div>
                             </div>
 
                             <div>
@@ -99,4 +169,10 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+    @endpush
 </x-app-layout> 

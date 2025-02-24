@@ -11,6 +11,47 @@ class SettingsSeeder extends Seeder
     {
         $settings = [
             [
+                'key' => 'features_title',
+                'value' => json_encode('Why Choose Pahali Pazuri'),
+                'type' => 'text'
+            ],
+            [
+                'key' => 'features',
+                'value' => json_encode([
+                    [
+                        'icon' => 'fa-star',
+                        'title' => 'Premium Accommodations',
+                        'description' => 'Experience luxury living with our carefully curated selection of high-quality rental properties.'
+                    ],
+                    [
+                        'icon' => 'fa-shield-alt',
+                        'title' => 'Secure Booking',
+                        'description' => 'Book with confidence using our secure and transparent booking system with instant confirmation.'
+                    ],
+                    [
+                        'icon' => 'fa-headset',
+                        'title' => '24/7 Support',
+                        'description' => 'Our dedicated customer service team is available around the clock to assist you with any needs.'
+                    ],
+                    [
+                        'icon' => 'fa-hand-sparkles',
+                        'title' => 'Clean & Hygienic',
+                        'description' => 'All our properties maintain the highest standards of cleanliness and sanitization.'
+                    ],
+                    [
+                        'icon' => 'fa-location-dot',
+                        'title' => 'Prime Locations',
+                        'description' => 'Find properties in the most desirable locations with easy access to amenities and attractions.'
+                    ],
+                    [
+                        'icon' => 'fa-gift',
+                        'title' => 'Loyalty Rewards',
+                        'description' => 'Earn points with every booking and enjoy exclusive benefits as a valued customer.'
+                    ]
+                ]),
+                'type' => 'json'
+            ],
+            [
                 'key' => 'hero_title',
                 'value' => json_encode('Find Your Perfect Stay'),
                 'type' => 'text'
@@ -62,7 +103,13 @@ class SettingsSeeder extends Seeder
         ];
 
         foreach ($settings as $setting) {
-            SiteSetting::create($setting);
+            SiteSetting::updateOrCreate(
+                ['key' => $setting['key']],
+                [
+                    'value' => $setting['value'],
+                    'type' => $setting['type']
+                ]
+            );
         }
     }
 } 

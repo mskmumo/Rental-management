@@ -12,10 +12,26 @@ class RoomTypesSeeder extends Seeder
     {
         // Apartment Types
         $apartmentTypes = [
-            ['name' => 'Studio', 'description' => 'Compact living space'],
-            ['name' => 'One Bedroom', 'description' => 'Separate bedroom and living area'],
-            ['name' => 'Two Bedroom', 'description' => 'Two separate bedrooms'],
-            ['name' => 'Penthouse', 'description' => 'Luxury top floor apartment'],
+            [
+                'name' => 'Luxury Suite',
+                'description' => 'Spacious luxury suite with premium amenities'
+            ],
+            [
+                'name' => 'Executive Room',
+                'description' => 'Modern room perfect for business travelers'
+            ],
+            [
+                'name' => 'Deluxe Studio',
+                'description' => 'Comfortable studio with kitchenette'
+            ],
+            [
+                'name' => 'Family Suite',
+                'description' => 'Large suite ideal for families'
+            ],
+            [
+                'name' => 'Ocean View Room',
+                'description' => 'Room with stunning ocean views'
+            ]
         ];
 
         foreach ($apartmentTypes as $type) {
@@ -24,11 +40,26 @@ class RoomTypesSeeder extends Seeder
 
         // Bed Types
         $bedTypes = [
-            ['name' => 'Single', 'description' => 'One single bed'],
-            ['name' => 'Double', 'description' => 'One double bed'],
-            ['name' => 'Twin', 'description' => 'Two single beds'],
-            ['name' => 'Queen', 'description' => 'One queen-size bed'],
-            ['name' => 'King', 'description' => 'One king-size bed'],
+            [
+                'name' => 'King Size',
+                'description' => 'Luxurious king-size bed'
+            ],
+            [
+                'name' => 'Queen Size',
+                'description' => 'Comfortable queen-size bed'
+            ],
+            [
+                'name' => 'Twin Beds',
+                'description' => 'Two single beds'
+            ],
+            [
+                'name' => 'Double Bed',
+                'description' => 'Standard double bed'
+            ],
+            [
+                'name' => 'California King',
+                'description' => 'Extra-large California king bed'
+            ]
         ];
 
         foreach ($bedTypes as $type) {

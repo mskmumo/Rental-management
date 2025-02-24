@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('welcome') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <img src="{{ asset('images/pahali-pazuri.png') }}" alt="Pahali Pazuri Logo" class="h-12 w-12 rounded-full shadow-lg animate-spin-slow logo-hover-pause">
                     </a>
                 </div>
 
@@ -23,6 +23,9 @@
                             </x-nav-link>
                             <x-nav-link :href="route('admin.bookings.index')" :active="request()->routeIs('admin.bookings.*')">
                                 {{ __('Bookings') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.contact-messages.index')" :active="request()->routeIs('admin.contact-messages.*')">
+                                {{ __('Contact Messages') }}
                             </x-nav-link>
                             <!-- Reports Dropdown -->
                             <div class="hidden sm:flex sm:items-center">
@@ -141,6 +144,9 @@
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('admin.bookings.index')" :active="request()->routeIs('admin.bookings.*')">
                         {{ __('Bookings') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.contact-messages.index')" :active="request()->routeIs('admin.contact-messages.*')">
+                        {{ __('Contact Messages') }}
                     </x-responsive-nav-link>
                     <!-- Mobile Reports Menu -->
                     <div class="pt-2 pb-3 space-y-1">

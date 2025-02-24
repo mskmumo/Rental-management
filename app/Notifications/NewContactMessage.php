@@ -2,43 +2,47 @@
 
 namespace App\Notifications;
 
-use App\Models\Contact;
+use App\Models\ContactMessage;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
-class NewContactMessage extends Notification
+class NewContactMessage extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $contact;
+    protected $contactMessage;
 
-    public function __construct(Contact $contact)
+    public function __construct(ContactMessage $contactMessage)
     {
-        $this->contact = $contact;
+        $this->contactMessage = $contactMessage;
     }
 
-    public function via($notifiable)
+    public function via(object $notifiable): array
     {
         return ['mail', 'database'];
     }
 
-    public function toMail($notifiable)
+    public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New Contact Form Submission')
-            ->line('You have received a new contact form submission from ' . $this->contact->name)
-            ->line('Subject: ' . $this->contact->subject)
-            ->line('Message: ' . $this->contact->message)
-            ->action('View Message', route('admin.contacts.show', $this->contact));
+            ->subject('New Contact Message from ' . $this->contactMessage->name)
+            ->line('You have received a new contact message from ' . $this->contactMessage->name)
+            ->line('Subject: ' . $this->contactMessage->subject)
+            ->line('Message:')
+            ->line($this->contactMessage->message)
+            ->action('View Message', route('admin.contact-messages.show', $this->contactMessage))
+            ->line('Thank you for using our application!');
     }
 
-    public function toArray($notifiable)
+    public function toArray(object $notifiable): array
     {
         return [
-            'contact_id' => $this->contact->id,
-            'name' => $this->contact->name,
-            'subject' => $this->contact->subject
+            'message' => 'New contact message from ' . $this->contactMessage->name,
+            'contact_message_id' => $this->contactMessage->id,
+            'subject' => $this->contactMessage->subject,
+            'description' => 'You have received a new contact message regarding ' . $this->contactMessage->subject
         ];
     }
 } 

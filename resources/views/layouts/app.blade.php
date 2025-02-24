@@ -12,7 +12,25 @@
         @endif
 
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- Custom Styles -->
+        <style>
+            @keyframes spin-slow {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            .animate-spin-slow {
+                animation: spin-slow 20s linear infinite;
+            }
+            .logo-hover-pause:hover {
+                animation-play-state: paused;
+            }
+        </style>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

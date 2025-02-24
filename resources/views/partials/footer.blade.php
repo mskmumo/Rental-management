@@ -91,7 +91,8 @@
             <div class="space-y-4 bg-blue-800/50 p-6 rounded-lg backdrop-blur-sm">
                 <h3 class="text-xl font-semibold text-white border-b border-blue-600/50 pb-2">Newsletter</h3>
                 <p class="text-blue-100">Subscribe to our newsletter for updates and exclusive offers.</p>
-                <form class="mt-4">
+                <form class="mt-4" action="{{ route('newsletter.subscribe') }}" method="POST">
+                    @csrf
                     <div class="flex">
                         <input type="email" 
                             class="flex-1 px-4 py-2 rounded-l-lg bg-blue-900/50 border border-blue-700 text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
