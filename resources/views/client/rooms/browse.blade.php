@@ -113,7 +113,7 @@
                                 </div>
 
                                 <div class="mt-4">
-                                    <p class="text-lg font-bold text-indigo-600">${{ number_format($room->price_per_night, 2) }} / night</p>
+                                    <p class="text-lg font-bold text-indigo-600">Ksh {{ number_format($room->price_per_night, 2) }} / night</p>
                                     <p class="text-sm text-gray-500">Capacity: {{ $room->capacity }} guests</p>
                                 </div>
 

@@ -12,13 +12,14 @@ return new class extends Migration
             $table->decimal('latitude', 10, 8)->nullable()->after('is_featured');
             $table->decimal('longitude', 11, 8)->nullable()->after('latitude');
             $table->string('address')->nullable()->after('longitude');
+            
         });
     }
 
     public function down(): void
     {
         Schema::table('rooms', function (Blueprint $table) {
-            $table->dropColumn(['latitude', 'longitude', 'address']);
+            $table->dropColumn(['latitude', 'longitude', 'address']);	
         });
     }
 }; 

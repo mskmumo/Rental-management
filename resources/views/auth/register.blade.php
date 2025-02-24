@@ -45,6 +45,16 @@
                     </div>
                 </form>
 
+                <br>
+
+                  <!-- Add reCAPTCHA -->
+                <div class="mb-4">
+                    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                    @error('g-recaptcha-response')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <div class="mt-6 text-center">
                     <p class="text-sm text-gray-600">
                         Already have an account?
@@ -56,4 +66,7 @@
             </div>
         </div>
     </div>
+    <!-- Add reCAPTCHA script -->
+    <!-- Add reCAPTCHA Script in the header or before closing body tag -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </x-auth-layout>

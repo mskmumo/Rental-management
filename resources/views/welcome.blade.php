@@ -64,7 +64,7 @@
                                 class="w-full h-64 object-cover">
                             <div class="absolute top-4 right-4">
                                 <span class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-full">
-                                    ${{ number_format($room->price_per_night, 2) }}/night
+                                    Ksh {{ number_format($room->price_per_night, 2) }}/night
                                 </span>
                             </div>
                         </div>
@@ -190,7 +190,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-gray-50">
+    {{-- <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold text-gray-900">
@@ -214,10 +214,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Featured Rooms Section -->
-    <section class="py-20 bg-white">
+    {{-- <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
@@ -238,7 +238,7 @@
                                 alt="{{ $room->name }}">
                             <div class="absolute inset-0 bg-black bg-opacity-40 transition-opacity group-hover:bg-opacity-30"></div>
                             <div class="absolute top-4 right-4 bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                ${{ number_format($room->price_per_night, 2) }}/night
+                                Ksh {{ number_format($room->price_per_night, 2) }}/night
                             </div>
                         </div>
 
@@ -300,9 +300,9 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <!-- Testimonials Section -->
+    {{-- <!-- Testimonials Section -->
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
@@ -339,10 +339,10 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Contact Section -->
-    <section class="py-20 bg-white">
+    {{-- <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-3xl font-extrabold text-gray-900">
@@ -395,7 +395,7 @@
                 @endif
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Social Media Links -->
     @if(isset($siteSettings['social_links']) && is_array(json_decode($siteSettings['social_links'] ?? '[]', true)))

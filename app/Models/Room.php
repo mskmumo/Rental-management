@@ -23,6 +23,7 @@ class Room extends Model
         'image_path',
         'latitude',
         'longitude',
+        'location_description',
         'address'
     ];
 

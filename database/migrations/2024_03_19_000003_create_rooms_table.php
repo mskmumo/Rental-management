@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('capacity');
             $table->enum('status', ['available', 'booked', 'maintenance'])->default('available');
             $table->string('image_path')->nullable();
+            $table->boolean('is_featured')->default(false);
+            $table->string('location_description')->nullable();
             $table->timestamps();
         });
     }

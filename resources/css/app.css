@@ -107,3 +107,8 @@ section {
 .mobile-menu-exit-active {
     transform: translateY(-100%);
 }
+
+.g-recaptcha {
+    margin-bottom: 1rem;
+    display: inline-block;
+}
